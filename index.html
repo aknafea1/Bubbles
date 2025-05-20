@@ -19,14 +19,18 @@
       href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"
       rel="stylesheet" />
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S8HTCN9WKR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S8HTCN9WKR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  gtag('config', 'G-S8HTCN9WKR');
-</script>
+      gtag("config", "G-S8HTCN9WKR");
+    </script>
     <title>Bubbles</title>
   </head>
   <body>
@@ -44,12 +48,17 @@
         <span class="checkmark"></span>
       </label>
       <h2>Gravity</h2>
-            <label class="custom-checkbox">
+      <label class="custom-checkbox">
         <input type="checkbox" class="gravity" />
         <span class="checkmark"></span>
       </label>
+      <h2>Stroked Bubbles</h2>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="stroke" />
+        <span class="checkmark"></span>
+      </label>
       <h2>#Bubbles</h2>
-      <input type="number" class="count" min="1" placeholder="100">
+      <input type="number" class="count" min="1" placeholder="100" />
     </div>
     <!-- script -->
     <script src="js/script.js"></script>

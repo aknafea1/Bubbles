@@ -3,6 +3,7 @@ const sens = document.querySelector(".sens");
 const isPaused = document.querySelector(".pause");
 const count = document.querySelector(".count");
 const grav = document.querySelector(".gravity");
+const strok = document.querySelector(".stroke");
 let pauseOnHover = isPaused.checked;
 isPaused.addEventListener("click", () => {
   pauseOnHover = isPaused.checked;
@@ -20,6 +21,10 @@ const c = canvas.getContext("2d");
 let gravity = false;
 grav.addEventListener("change", (e) => {
   gravity = grav.checked;
+});
+let stroke = false;
+strok.addEventListener("change", (e) => {
+  stroke = strok.checked;
 });
 function miniRandomRange(min, max) {
   return Math.random() * (max - min) + min;
@@ -39,6 +44,11 @@ function Circle(x, y, raduis, dx, dy, color) {
     c.arc(this.x, this.y, this.raduis, 0, 2 * Math.PI, false);
     c.fillStyle = this.color;
     c.fill();
+    if(stroke){
+      c.stroke();
+    }
+    c.lineWidth = 1;
+    c.strokeStyle = "black";
   };
   this.update = function () {
     this.draw();
@@ -80,7 +90,17 @@ function Circle(x, y, raduis, dx, dy, color) {
   };
 }
 let circlesArr = [];
-const colorsArr = ["#0F5FA6", "#0A8CBF", "#04B2D9", "#05DBF2", "#0D0D0D"];
+const colorsArr = [
+  "#0F5FA6",
+  "#0A8CBF",
+  "#04B2D9",
+  "#05DBF2",
+  "#0D0D0D",
+  "#FE7743",
+  "#273F4F",
+  "#CB0404",
+  "#FCBAD3",
+];
 let sensativity = sens.value;
 const mouse = {
   x: undefined,
@@ -92,9 +112,9 @@ function init(count = 100) {
     let x = miniRandomRange(300, innerWidth - 60);
     let y = miniRandomRange(50, innerHeight - 60);
     let raduis = miniRandomRange(5, 25);
-    let dx = miniRandomRange(-1.5, 1.5)||-1.5;
-    let dy = miniRandomRange(-1.5, 1.5)||-1.5;
-    let color = colorsArr[Math.floor( miniRandomRange(0, colorsArr.length))];
+    let dx = miniRandomRange(-1.5, 1.5) || -1.5;
+    let dy = miniRandomRange(-1.5, 1.5) || -1.5;
+    let color = colorsArr[Math.floor(miniRandomRange(0, colorsArr.length))];
     circlesArr.push(new Circle(x, y, raduis, dx, dy, color));
   }
 }
