@@ -36,20 +36,14 @@ Then I came across a video titled "Coding Snake in 4 Minutes and 30 Seconds." Th
 
 ### Useful resources
 
-Chatgpt was the mentor infact i take the but and tell him why it doesn't work to learn a new concept
-he doesn't always be accurate but here come our research bugs are the best thing in our field unless
-you didn't sleep well XD
+Youtube (https://www.youtube.com/@ChrisCourses)
 
 ### Built with
 
-- HTML markup
+- HTML5
 - CSS
-- Flexbox
 - JS
 
-## Features
-
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges-dashboard) challenge.
 
 ## Author
 
