@@ -2,6 +2,7 @@ const canvas = document.querySelector("canvas");
 const sens = document.querySelector(".sens");
 const isPaused = document.querySelector(".pause");
 const count = document.querySelector(".count");
+const grav = document.querySelector(".gravity");
 let pauseOnHover = isPaused.checked;
 isPaused.addEventListener("click", () => {
   pauseOnHover = isPaused.checked;
@@ -16,7 +17,13 @@ window.addEventListener("resize", () => {
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 const c = canvas.getContext("2d");
-
+let gravity = false;
+grav.addEventListener("change", (e) => {
+  gravity = grav.checked;
+});
+function miniRandomRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
 function Circle(x, y, raduis, dx, dy, color) {
   this.x = x;
   this.y = y;
@@ -41,8 +48,17 @@ function Circle(x, y, raduis, dx, dy, color) {
       this.dx = -this.dx;
       this.odx = -this.odx;
     } else if (this.y + this.raduis > innerHeight || this.y - this.raduis < 0) {
-      this.dy = -this.dy;
+      this.dy = -(gravity ? Math.floor(this.dy * 0.91) : this.ody);
       this.ody = -this.ody;
+    } else {
+      if (gravity && !pauseOnHover) {
+        this.dy += 1;
+      } else {
+        if (!pauseOnHover) {
+          this.dy = this.ody;
+          this.dx = this.odx;
+        }
+      }
     }
     if (sensativity < this.raduis) {
       sensativity = this.raduis;
@@ -55,8 +71,6 @@ function Circle(x, y, raduis, dx, dy, color) {
     ) {
       if (this.raduis < this.minRaduis + 50) {
         this.raduis += 1;
-        this.dx = 0;
-        this.dy = 0;
         this.dx = !pauseOnHover ? this.odx : 0;
         this.dy = !pauseOnHover ? this.ody : 0;
       }
@@ -72,35 +86,21 @@ const mouse = {
   x: undefined,
   y: undefined,
 };
-for (let i = 0; i < 100; i++) {
-  let x = Math.random() * innerWidth + 200;
-  let y = Math.random() * innerHeight;
-  let raduis = Math.random() * 20 + 5;
-  let dx = (Math.random() + 0.5) * 1;
-  let dy = (Math.random() + 0.5) * 1;
-  let color = colorsArr[Math.floor(Math.random() * colorsArr.length)];
-  circlesArr.push(new Circle(x, y, raduis, dx, dy, color));
-}
-count.addEventListener("keyup", (e) => {
-let circlesArr = [];
-console.log(circlesArr)
-  for (let i = 0; i < e.target.value; i++) {
-    let x = Math.random() * innerWidth + 200;
-    let y = Math.random() * innerHeight;
+function init(count = 100) {
+  circlesArr = [];
+  for (let i = 0; i < count; i++) {
+    let x = miniRandomRange(300, innerWidth - 60);
+    let y = miniRandomRange(50, innerHeight - 60);
     let raduis = Math.random() * 20 + 5;
     let dx = (Math.random() + 0.5) * 1;
     let dy = (Math.random() + 0.5) * 1;
     let color = colorsArr[Math.floor(Math.random() * colorsArr.length)];
     circlesArr.push(new Circle(x, y, raduis, dx, dy, color));
   }
-  function animate() {
-  c.clearRect(0, 0, innerWidth, innerHeight);
-  requestAnimationFrame(animate);
-  for (let i = 0; i < circlesArr.length; i++) {
-    circlesArr[i].update();
-  }
 }
-animate();
+init();
+count.addEventListener("keyup", (e) => {
+  init(e.target.value || 100);
 });
 function animate() {
   c.clearRect(0, 0, innerWidth, innerHeight);

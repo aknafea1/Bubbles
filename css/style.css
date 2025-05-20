@@ -62,8 +62,8 @@ h2 {
   cursor: pointer;
 }
 
-.custom-checkbox input.pause {
-  display: none; /* Hide native checkbox */
+.custom-checkbox input {
+  display: none;
 }
 
 .custom-checkbox .checkmark {
@@ -78,7 +78,7 @@ h2 {
   position: relative;
 }
 
-.custom-checkbox input.pause:checked + .checkmark {
+.custom-checkbox input:checked + .checkmark {
   background-color: #0a8cbf;
   border-color: #0a8cbf;
 }
@@ -96,7 +96,7 @@ h2 {
   transition: opacity 0.3s ease;
 }
 
-.custom-checkbox input.pause:checked + .checkmark::after {
+.custom-checkbox input:checked + .checkmark::after {
   opacity: 1;
 }
 .count {
