@@ -91,10 +91,10 @@ function init(count = 100) {
   for (let i = 0; i < count; i++) {
     let x = miniRandomRange(300, innerWidth - 60);
     let y = miniRandomRange(50, innerHeight - 60);
-    let raduis = Math.random() * 20 + 5;
-    let dx = (Math.random() + 0.5) * 1;
-    let dy = (Math.random() + 0.5) * 1;
-    let color = colorsArr[Math.floor(Math.random() * colorsArr.length)];
+    let raduis = miniRandomRange(5, 25);
+    let dx = miniRandomRange(-1.5, 1.5)||-1.5;
+    let dy = miniRandomRange(-1.5, 1.5)||-1.5;
+    let color = colorsArr[Math.floor( miniRandomRange(0, colorsArr.length))];
     circlesArr.push(new Circle(x, y, raduis, dx, dy, color));
   }
 }
